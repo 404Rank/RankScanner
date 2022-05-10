@@ -10,4 +10,5 @@ There are some help that teach you how to use it:
 ---
 
 you also can input -help or --help to find help:
+
 `$ python scanner.py -help`
