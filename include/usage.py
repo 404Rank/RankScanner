@@ -9,8 +9,10 @@ class usage:
         if '--version' in arg or '-version' in arg:
             print("[Rankscanner] version is %s" % ("1.0.0"));
         elif '--help' in arg or '-help' in arg:
-            if(exists("./README.md")):
-                with open("./README.md") as file:
+            if(exists("./Others/helper.txt")):
+                with open("./Others/helper.txt") as file:
                     print(file.read());
         elif '--git' in arg or '-git' in arg:
             print("[Rankscanner] .git scanning");
+        else:
+            print("No arguments named %s" % (" ".join(arg)));
