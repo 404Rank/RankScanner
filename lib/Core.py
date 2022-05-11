@@ -1,3 +1,4 @@
+import re
 from Config.Conf import config
 from lib.data import DataSet;
 from lib.ColorOut import ColorText;
@@ -27,6 +28,7 @@ class gitInfo:
         urlObj = self.urlObj;
         basciList = DataSet.basicList(urlObj.hostname);
         target = "%s://%s:%s/" % (urlObj.scheme,urlObj.hostname,str(urlObj.port));
+        finder = [];
         for i in basciList:
             signals = target + i;
             print(ColorText.information + "is testing "+signals);
@@ -35,7 +37,11 @@ class gitInfo:
                 signals
             )
             if(require.status == 200):
-                print(ColorText.find + "This url maybe A Leakage:   " + signals);
+                finder.append(ColorText.find + "This url maybe A Leakage: " + signals);
+        if len(finder) > 0:
+            print(ColorText.block);
+            for res in finder:
+                print(res);
 
     def GitLeakage(self) -> None:
         pass;
