@@ -6,8 +6,8 @@
 There are some help that teach you how to use it:
 
 First:
-`$ pip install urlobject`
-`$ pip install difflib`
+
+`$ pip install -r requirement.txt`
 
 
 
