@@ -6,7 +6,7 @@ Options and arguments:
 --url or -url:                    with argument named url which you want to scan
                                   such as <python scanner.py -url http://127.0.0.1/>
 
--git or --git:                    Git leak scanning for the website
+-git or --git:                    Only Git leak scanning for the website
                                   such as <python scanner.py -url http://127.0.0.1/ -git>
 
 -output or --output:              you can appoint the route to save the result

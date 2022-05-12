@@ -27,5 +27,5 @@ class DataSet:
             hostname+".rar" if hostname!= None else ""
         ] if item!="");
     
-
-    
+    def vimList() -> list:
+        pass;
