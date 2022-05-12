@@ -4,7 +4,7 @@ from lib.data import DataSet;
 from lib.ColorOut import ColorText;
 from lib.urlProcess import urlObject;
 import urllib3;
-class gitInfo:
+class appCore:
     def __init__(self,url) -> None:
         self.url = url;
         self.urlObj = urlObject(url);

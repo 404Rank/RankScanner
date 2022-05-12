@@ -1,6 +1,6 @@
 '''
 @Author: 404Rank
-@Desc:颜色输出
+@Desc:colorful output for Linux
 '''
 
 class ColorText:

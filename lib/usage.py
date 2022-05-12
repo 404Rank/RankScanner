@@ -2,7 +2,7 @@ import os;
 import difflib;
 from Config.Conf import config
 from lib.ColorOut import ColorText
-from lib.Core import gitInfo
+from lib.Core import appCore
 class usage:
     def __init__(self) -> None:
         pass
@@ -25,8 +25,10 @@ class usage:
             Index = arg.index(match)
             require = arg[Index:Index+2];
             if (len(require) == 2):
-                gitScan = gitInfo(require[1]);
-                gitScan.start();
+                app = appCore(require[1]);
+                app.start();
+            else:
+                print(ColorText.warning + "Do you know the -url <argument> mean?");
             #only scann git info
             if '--git' in arg or '-git' in arg:
                 print(ColorText.information+"[Rankscanner] .git scanning");

@@ -10,5 +10,5 @@ Options and arguments:
                                   such as <python scanner.py -url http://127.0.0.1/ -git>
 
 -output or --output:              you can appoint the route to save the result
-                                  such as <python scanner.py -url http://127.0.0.1/ -output> or
-                                          <python scanner.py -url http://127.0.0.1/ -output "D:/output/result.html">
+                                  such as  <python scanner.py -url http://127.0.0.1/ -output>
+                                  but also <python scanner.py -url http://127.0.0.1/ -output "D:/output/result.html">
