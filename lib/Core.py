@@ -36,13 +36,14 @@ class appCore:
     def basciLeakage(self,tarList) -> None:
         urlObj = self.urlObj;
         mainAddr = urlObj.getMainAddr();
+        print(tarList,mainAddr);
         for prefix in tarList:
             if(prefix == "/"):
                 basciList = DataSet.basicList(urlObj.host);
             else:
                 basciList = DataSet.basicList(prefix);
             for i in basciList:
-                signals = prefix + i;
+                signals = mainAddr + prefix +"/"+ i;
                 print(ColorText.information + "Testing "+signals);
                 try:
                     require = self.http.request(
