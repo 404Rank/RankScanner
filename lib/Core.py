@@ -32,6 +32,7 @@ class appCore:
             tarList = self.urlObj.get_list_name();
             self.basciLeakage(tarList);
             self.GitLeakage(tarList);
+            self.res_out_put();
         else:
             print(ColorText.warning + "The website couldn't request and the status code is %s" % str(statusCode));
 
@@ -64,16 +65,18 @@ class appCore:
                 elif(require.status == 403 or require.status == 304):
                     self.res['maybe'].append(ColorText.maybe + "%s - "%(str(require.status)) + "This url maybe A Leakage: " + signals)
         #basic end
-        #basci res output , 后面完善都高后以html形式出现
-        for item in self.res.values():
-            if(len(item)>0):
-                print(ColorText.block);
-                for out in item:
-                    print(out)
+        
     def GitLeakage(self,tarList) -> None:
         urlObj = self.urlObj;
         gitList = DataSet.gitList();
         mainAddr = self.urlObj.getMainAddr();
         pass;
 
+    def res_out_put(self) -> bool:
+        for item in self.res.values():
+            if(len(item)>0):
+                print(ColorText.block);
+                for out in item:
+                    print(out);
+        return True;
             
