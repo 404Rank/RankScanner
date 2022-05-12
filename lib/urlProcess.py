@@ -27,7 +27,6 @@ class urlObject:
         mainAddr = "%s://%s" % (self.protocal,self.host);
         if self.port != "":
             mainAddr = mainAddr+":"+self.port
-        mainAddr += "/"
         return mainAddr;
 
     def get_list_name(self)-> list :

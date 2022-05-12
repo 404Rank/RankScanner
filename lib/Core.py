@@ -1,8 +1,10 @@
+from sys import prefix
 from Config.Conf import config
 from lib.data import DataSet;
 from lib.ColorOut import ColorText;
 from lib.urlProcess import urlObject;
 import urllib3;
+import re;
 class appCore:
     def __init__(self,url) -> None:
         self.url = url;
@@ -12,6 +14,7 @@ class appCore:
             "finder":[],
             "maybe":[]
         };
+        self.slash = re.compile("[\/]{1,}",re.IGNORECASE);
     def start(self) -> None:
         #send request
         try:
@@ -37,13 +40,15 @@ class appCore:
         urlObj = self.urlObj;
         mainAddr = urlObj.getMainAddr();
         print(tarList,mainAddr);
-        for prefix in tarList:
+        for deep in range(0,len(tarList)):
+            prefix = tarList[deep]
             if(prefix == "/"):
                 basciList = DataSet.basicList(urlObj.host);
             else:
                 basciList = DataSet.basicList(prefix);
             for i in basciList:
-                signals = mainAddr + prefix +"/"+ i;
+                signals = self.slash.sub("/",("/".join(tarList[0:deep+1]) +"/"+ i));
+                signals = mainAddr + signals;
                 print(ColorText.information + "Testing "+signals);
                 try:
                     require = self.http.request(
