@@ -10,8 +10,9 @@ class urlObject:
         self.urlObj = URLObject(url);
         #主机处理
         if self.urlObj.scheme == None or self.urlObj.scheme == "":
-            url = "http://"+url;
-        obj = self.urlObj;
+            self.url = "http://"+self.url;
+        self.urlObj = URLObject(self.url);
+        obj = self.urlObj
         if self.urlObj.port == None or self.urlObj.port == "":
             self.port = "";
         else:

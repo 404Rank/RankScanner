@@ -47,7 +47,7 @@ class appCore:
             else:
                 basciList = DataSet.basicList(prefix);
             for i in basciList:
-                signals = self.slash.sub("/",("/".join(tarList[0:deep+1]) +"/"+ i));
+                signals = self.slash.sub("/",("/".join(tarList[0:deep]) +"/"+ i));
                 signals = mainAddr + signals;
                 print(ColorText.information + "Testing "+signals);
                 try:

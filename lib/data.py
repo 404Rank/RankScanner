@@ -24,7 +24,8 @@ class DataSet:
             'www.rar',
             'www.tar.gz',
             hostname+".zip" if hostname!= None else "",
-            hostname+".rar" if hostname!= None else ""
+            hostname+".rar" if hostname!= None else "",
+            hostname+".bak" if hostname!= None else ""
         ] if item!="");
     
     def vimList() -> list:
