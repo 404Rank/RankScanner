@@ -1,6 +1,6 @@
 '''
 @Author: 404Rank
-@Desc: data;
+@Desc: 目录遍历
 '''
 class DataSet:
     def gitList() -> list:
@@ -14,7 +14,7 @@ class DataSet:
             'info/refs'
         ];
 
-    def basicList(hostname="") -> list:
+    def basicList(hostname=None) -> list:
         return list(item for item in [
             'robots.txt',
             '.htaccess',
@@ -23,8 +23,8 @@ class DataSet:
             'www.zip',
             'www.rar',
             'www.tar.gz',
-            hostname+".zip" if hostname!="" else "",
-            hostname+".rar" if hostname!="" else ""
+            hostname+".zip" if hostname!= None else "",
+            hostname+".rar" if hostname!= None else ""
         ] if item!="");
     
 
