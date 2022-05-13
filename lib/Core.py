@@ -9,6 +9,7 @@ try:
 except:
     print(ColorText.warning + "You don't have the urllib3 library yet, but you can install it with this command: $ pip install -r requirement.txt");
     sys.exit();
+
 class appCore:
     def __init__(self,url) -> None:
         self.url = url;
