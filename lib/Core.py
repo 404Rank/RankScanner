@@ -3,8 +3,12 @@ from Config.Conf import config
 from lib.data import DataSet;
 from lib.ColorOut import ColorText;
 from lib.urlProcess import urlObject;
-import urllib3;
-import re;
+import re,sys;
+try:
+    import urllib3;
+except:
+    print(ColorText.warning + "You don't have the urllib3 library yet, but you can install it with this command: $ pip install -r requirement.txt");
+    sys.exit();
 class appCore:
     def __init__(self,url) -> None:
         self.url = url;

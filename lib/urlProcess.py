@@ -1,8 +1,15 @@
 '''
 @Author:404Rank
 '''
+import sys;
 from dataclasses import replace
-from urlobject import URLObject;
+from lib.ColorOut import ColorText
+try:
+    from urlobject import URLObject;
+except:
+    print(ColorText.warning + "You don't have the urlobject library yet, but you can install it with this command: $ pip install -r requirement.txt");
+    sys.exit();
+
 class urlObject:
     def __init__(self,url) -> None:
         url = url.replace("\\","/");
