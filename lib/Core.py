@@ -41,7 +41,7 @@ class appCore:
         else:
             print(ColorText.warning + "The website couldn't request and the status code is %s" % str(statusCode));
 
-    #core
+    #core tarList: 路径，且索引越高，目录越深
     def basciLeakage(self,tarList) -> None:
         urlObj = self.urlObj;
         mainAddr = urlObj.getMainAddr();
@@ -75,6 +75,9 @@ class appCore:
         urlObj = self.urlObj;
         gitList = DataSet.gitList();
         mainAddr = self.urlObj.getMainAddr();
+        pass;
+
+    def BackupLeakage(self,tarList) -> None:
         pass;
 
     def res_out_put(self) -> bool:
