@@ -15,7 +15,7 @@ First:
 
 Then:
 
-`$ python scanner.py -url http://127.0.0.1 -git -output <path>`
+`$ python scanner.py -url http://127.0.0.1`
 
 ---
 
