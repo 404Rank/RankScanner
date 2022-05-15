@@ -3,6 +3,7 @@ import difflib;
 from Config.Conf import config
 from lib.ColorOut import ColorText
 from lib.Core import appCore
+from lib.urlProcess import urlObject
 class usage:
     def __init__(self) -> None:
         pass
@@ -24,14 +25,14 @@ class usage:
             match = difflib.get_close_matches('-url',arg,1,cutoff=0.7)[0];
             Index = arg.index(match)
             require = arg[Index:Index+2];
-            if (len(require) == 2):
+            if (len(require) == 2) and urlObject.isURL(require[1]):
                 app = appCore(require[1]);
                 app.start();
             else:
-                print(ColorText.warning + "Do you know the -url <argument> mean?");
+                print(ColorText.warning + "Do you know the -url <argument:url> mean?");
             #only scann git info
-            if '--git' in arg or '-git' in arg:
-                print(ColorText.information+"[Rankscanner] .git scanning");
+            # if '--git' in arg or '-git' in arg:
+            #     print(ColorText.information+"[Rankscanner] .git scanning");
         
         else:
             print(ColorText.warning+"No arguments named %s" % (" ".join(arg)));
