@@ -10,7 +10,7 @@ class usage:
     def useArg(*arg) -> None:
         arg = arg[0]
         if '--version' in arg or '-version' in arg:
-            print(ColorText.information+"version: %s" % (config.VERSION));
+            print(ColorText.information+"VERSION: %s" % (config.VERSION));
         elif '--help' in arg or '-help' in arg:
             if(os.path.exists("./Others/helper.txt")):
                 with open("./Others/helper.txt") as file:
@@ -18,7 +18,7 @@ class usage:
                     print(file.read());
             else:
                 print(ColorText.warning+"[Rankscanner] %\Others\helper.txt is not exisit!" % __file__);
-                print(ColorText.information+"But you can find the help at https://github.com/404Rank/RankScanner");
+                print(ColorText.information+"But you can find the help in https://github.com/404Rank/RankScanner");
 #--------------------------------------------------------------------------------------------------------------------
         elif '--url' in arg or '-url' in arg:
             # url
