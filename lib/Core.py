@@ -1,4 +1,3 @@
-from sys import prefix
 from Config.Conf import config
 from lib.data import DataSet;
 from lib.ColorOut import ColorText;
@@ -33,9 +32,10 @@ class appCore:
             return;
         statusCode = require.status;
         if statusCode == 200:
-            print(ColorText.information+"Request succeeded! Start to scan");
+            print(ColorText.information+"Request success and Start to scan");
             tarList = self.urlObj.get_list_name();
-            self.basciLeakage(tarList);
+            #test
+            # self.basciLeakage(tarList);
             self.GitLeakage(tarList);
             self.res_out_put();
         else:
@@ -45,7 +45,6 @@ class appCore:
     def basciLeakage(self,tarList) -> None:
         urlObj = self.urlObj;
         mainAddr = urlObj.getMainAddr();
-        print(tarList,mainAddr);
         for deep in range(0,len(tarList)):
             prefix = tarList[deep]
             if(prefix == "/"):
@@ -72,9 +71,13 @@ class appCore:
         #basic end
         
     def GitLeakage(self,tarList) -> None:
+        GitList = DataSet.gitList();
         urlObj = self.urlObj;
-        gitList = DataSet.gitList();
-        mainAddr = self.urlObj.getMainAddr();
+        mainAddr = urlObj.getMainAddr();
+        for deep in range(0,len(tarList)):
+            for add in GitList:
+                target = self.slash.sub("/",("/".join(tarList[0:deep]) +"/"+ add));
+                print(target)
         pass;
 
     def BackupLeakage(self,tarList) -> None:
