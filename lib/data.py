@@ -4,7 +4,7 @@
 '''
 class DataSet:
     def gitList() -> list:
-        return [
+        return list(map(lambda item: ".git/"+item,[
             'config/',
             'HEAD',
             "ORIG_HEAD",
@@ -17,8 +17,7 @@ class DataSet:
             'info/refs',
             "objects/",
             "refs/",
-
-        ];
+        ]));
 
     def basicList(hostname=None) -> list:
         return list(item for item in [

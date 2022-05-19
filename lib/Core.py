@@ -1,3 +1,7 @@
+from signal import signal
+from socket import timeout
+
+from flask import request
 from Config.Conf import config
 from lib.data import DataSet;
 from lib.ColorOut import ColorText;
@@ -35,7 +39,7 @@ class appCore:
             print(ColorText.information+"Request success and Start to scan");
             tarList = self.urlObj.get_list_name();
             #test
-            # self.basciLeakage(tarList);
+            self.basciLeakage(tarList);
             self.GitLeakage(tarList);
             self.res_out_put();
         else:
@@ -54,7 +58,7 @@ class appCore:
             for i in basciList:
                 signals = self.slash.sub("/",("/".join(tarList[0:deep]) +"/"+ i));
                 signals = mainAddr + signals;
-                print(ColorText.information + "Testing "+signals);
+                print(ColorText.information + "Trying "+signals);
                 try:
                     require = self.http.request(
                         "GET",
@@ -65,9 +69,9 @@ class appCore:
                     print(ColorText.warning + "connect faild!");
                     return;
                 if(require.status == 200):
-                    self.res['finder'].append(ColorText.find + "200 - " + "This url maybe A Leakage: " + signals)
+                    self.res['finder'].append(ColorText.find + "200 - " + "This url is a BasicLeakage: " + signals)
                 elif(require.status == 403 or require.status == 304):
-                    self.res['maybe'].append(ColorText.maybe + "%s - "%(str(require.status)) + "This url maybe A Leakage: " + signals)
+                    self.res['maybe'].append(ColorText.maybe + "%s - "%(str(require.status)) + "This url maybe A BasicLeakage: " + signals)
         #basic end
         
     def GitLeakage(self,tarList) -> None:
@@ -76,9 +80,20 @@ class appCore:
         mainAddr = urlObj.getMainAddr();
         for deep in range(0,len(tarList)):
             for add in GitList:
-                target = self.slash.sub("/",("/".join(tarList[0:deep]) +"/"+ add));
-                print(target)
-        pass;
+                target = mainAddr + self.slash.sub("/",("/".join(tarList[0:deep+1]) +"/"+ add));
+                print(ColorText.information + "Trying "+target);
+                try:
+                    require = self.http.request(
+                        "GET",
+                        target,
+                        timeout = config.CONN_WAIT_TIME
+                    )
+                except:
+                    pass;
+                if(require.status == 200):
+                    self.res['finder'].append(ColorText.find + '200 - '+"This url is a GitLeakage: "+target);
+                elif(require.status == 403 or require.status == 304):
+                    self.res['maybe'].append(ColorText.maybe + '%s - '%(str(require.status)) + "This url may be a GitLeakage: " + target);
 
     def BackupLeakage(self,tarList) -> None:
         pass;
