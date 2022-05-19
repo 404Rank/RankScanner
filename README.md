@@ -1,4 +1,6 @@
-![logo](./Others/img/logo.png)
+<div align="center">
+<img src="./Others/img/logo.png">
+</div>
 # RankScanner
 此工具只是本人的想法的实现，若用此工具对网站造成危害，本人概不负责
 
