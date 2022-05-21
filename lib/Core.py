@@ -39,9 +39,10 @@ class appCore:
         if statusCode == 200:
             print(ColorText.information+"Request success and Start to scan");
             tarList = self.urlObj.get_list_name();
+            print(self.urlObj.url);
             #test
-            self.basciLeakage(tarList);
-            self.GitLeakage(tarList);
+            # self.basciLeakage(tarList);
+            # self.GitLeakage(tarList);
             self.res_out_put();
         else:
             print(ColorText.warning + "The website couldn't request and the status code is %s" % str(statusCode));
@@ -82,6 +83,9 @@ class appCore:
     def BackupLeakage(self,tarList) -> None:
         pass;
 
+    def EditorLeakage(self,tarlist) -> None:
+        pass;
+
     def res_out_put(self) -> bool:
         for item in self.res.values():
             if(len(item)>0):
@@ -90,6 +94,15 @@ class appCore:
                     print(out);
         return True;
     
+    def homePage(self,tarList) -> bool:
+        Reg = re.compile("\.*$");
+        if Reg.match(tarList[-1] if tarList[-1] == "/" else tarList[-2]) is not None:
+            return True;
+        else:
+            homeList = DataSet.homePage();
+            
+
+
     def Require(self,target) -> int:
         print(ColorText.information + "Trying "+target);
         try:
