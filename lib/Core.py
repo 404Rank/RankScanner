@@ -102,4 +102,3 @@ class appCore:
         except:
             print(ColorText.warning + "connect faild!");
             return 0;
-            
