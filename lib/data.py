@@ -28,12 +28,17 @@ class DataSet:
             'www.zip',
             'www.rar',
             'www.tar.gz',
+            #SVN
+            '.svn/entries',
+            '.svn/wc.db',
+            #HG
+            '.hg',
             hostname+".zip" if hostname!= None else "",
             hostname+".rar" if hostname!= None else "",
             hostname+".bak" if hostname!= None else "",
         ] if item!="");
     
-    def vimList(fileName:str) -> list:
+    def EditorList(fileName:str) -> list:
         if fileName == "" or fileName is None:
             return [];
         else:
@@ -41,7 +46,7 @@ class DataSet:
                 ".%s.swp",
                 ".%s.swo",
                 ".%s.swn",
-                "%s~" #gedit backup
+                "%s~" #gedit Leakage
             ]));
     
     def homePage() -> list:
