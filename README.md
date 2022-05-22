@@ -21,7 +21,7 @@ Then:
 
 ---
 
-you also can input -help or --help to find help:
+you can also input -help or --help to find help:
 
 `$ python scanner.py -help`
 
