@@ -50,6 +50,10 @@ class DataSet:
             ]));
     
     def homePage() -> list:
+        '''
+        二维数组分类
+        后期方便通过对应不同的类型进行嗅探
+        '''
         home = [
             "index",
             "main",

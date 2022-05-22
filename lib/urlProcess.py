@@ -46,7 +46,7 @@ class urlObject:
         deepList.insert(0,"/");
         return deepList;
 
-    def isURL(url:str) -> bool:
+    def isURL(self,url:str) -> bool:
         reg = re.compile(
             r'^(?:http|ftp)s?://' # http:// or https://
             r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|' #domain...

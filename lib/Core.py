@@ -34,7 +34,12 @@ class appCore:
         if statusCode == 200:
             print(ColorText.information+"Request success and Start to scan");
             tarList = self.urlObj.get_list_name();
-            #test
+            #getHomePage
+            # home = self.homePageSniff();
+            # print(home);
+            '''
+            Test info Leakage
+            '''
             self.BasciLeakage(tarList);
             self.GitLeakage(tarList);
             self.EditorLeakage(tarList);
@@ -100,8 +105,18 @@ class appCore:
                 if status == 200:
                     self.res['finder'].append(ColorText.find + '200 - '+"This url is a EditorLeakage: "+target);
 
-    def homePageSniff(self,tarList) -> None:
-        pass;
+    def homePageSniff(self) -> str:
+        homeList = DataSet.homePage();
+        url = self.url;
+        if url[-1] != "/":
+            url += "/";
+        for type in homeList:
+            for home in type:
+                target = url + home;
+                statusCode = self.Require(target,False);
+                if statusCode == 200:
+                    return target;
+        return "";
 
     def res_out_put(self) -> bool:
         for item in self.res.keys():
@@ -113,8 +128,9 @@ class appCore:
                     print(out);
         return True;
 
-    def Require(self,target) -> int:
-        print(ColorText.information + "Trying "+target);
+    def Require(self,target,notion=True) -> int:
+        if notion:
+            print(ColorText.information + "Trying "+target);
         try:
             require = self.http.request(
                 "GET",
