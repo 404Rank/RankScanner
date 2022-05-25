@@ -21,16 +21,7 @@ class appCore:
         self.slash = re.compile("[\/]{1,}",re.IGNORECASE);
     def start(self) -> None:
         #send request
-        try:
-            require = self.http.request(
-                "GET",
-                self.url,
-                timeout=config.CONN_WAIT_TIME
-            );
-        except:
-            print(ColorText.warning + "connecting %s faild!" % (self.url));
-            return;
-        statusCode = require.status;
+        statusCode = self.Require(self.url);
         if statusCode == 200:
             print(ColorText.information+"Request success and Start to scan");
             tarList = self.urlObj.get_list_name();
@@ -54,11 +45,11 @@ class appCore:
         for deep in range(0,len(tarList)):
             prefix = tarList[deep]
             if(prefix == "/"):
-                basciList = DataSet.basicList(urlObj.host);
+                continue;
             else:
                 basciList = DataSet.basicList(prefix);
             for i in basciList:
-                signals = self.slash.sub("/",("/".join(tarList[0:deep]) +"/"+ i));
+                signals = self.slash.sub("/",("/"+"/".join(tarList[0:deep]) +"/"+ i));
                 target = mainAddr + signals;
                 statusCode = self.Require(target);
                 if(statusCode == 200):
@@ -73,7 +64,7 @@ class appCore:
         mainAddr = urlObj.getMainAddr();
         for deep in range(0,len(tarList)):
             for add in GitList:
-                target = mainAddr + self.slash.sub("/",("/".join(tarList[0:deep]) +"/"+ add));
+                target = mainAddr + self.slash.sub("/",("/"+"/".join(tarList[0:deep]) +"/"+ add));
                 statusCode = self.Require(target);
                 if(statusCode == 200):
                     self.res['finder'].append(ColorText.find + '200 - '+"This url is a GitLeakage: "+target);
@@ -82,22 +73,24 @@ class appCore:
         #Git end
 
     def EditorLeakage(self,tarList) -> None:
-        url = self.url;
         isFile = re.compile(".*\.[html|php|jsp|jspx]*$",re.IGNORECASE);
         editorList = [];
-        if isFile.match(tarList[-1]) is None:
-            if isFile.match(tarList[-2]) is None:
-                return;
+        try:
+            if isFile.match(tarList[-1]) is None:
+                if isFile.match(tarList[-2]) is None:
+                    return;
+                else:
+                    file = tarList[-2];
+                    editorList = DataSet.EditorList(file);
+                    tarList = tarList[0:-2]
             else:
-                file = tarList[-2];
+                file = tarList[-1];
                 editorList = DataSet.EditorList(file);
-                tarList = tarList[0:-2]
-        else:
-            file = tarList[-1];
-            editorList = DataSet.EditorList(file);
-            tarList = tarList[0:-1]
+                tarList = tarList[0:-1]
+        except:
+            pass;
         if len(editorList) > 0:
-            target = self.urlObj.getMainAddr() + "".join(tarList);
+            target = self.slash.sub("/",(self.urlObj.getMainAddr()+"/"+"/".join(tarList)));
             if tarList[-1] != "/":
                     target += "/";
             for i in editorList:
@@ -139,5 +132,5 @@ class appCore:
             );
             return require.status;
         except:
-            print(ColorText.warning + "connect faild!");
+            print(ColorText.warning + "connect faild at {}".format(target));
             return -1;

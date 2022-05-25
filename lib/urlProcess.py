@@ -38,7 +38,7 @@ class urlObject:
         return mainAddr;
 
     def get_list_name(self)-> list :
-        '''
+        '''0
         获取目录名
         0级目录:/
         '''

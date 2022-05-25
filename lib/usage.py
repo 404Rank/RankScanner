@@ -25,14 +25,12 @@ class usage:
             match = difflib.get_close_matches('-url',arg,1,cutoff=0.7)[0];
             Index = arg.index(match)
             require = arg[Index:Index+2];
-            Allowed = False;
             if (len(require) == 2):
                 uObj = urlObject((require[1]));
-                if uObj.isURL(uObj.url):
-                    app = appCore(uObj.url);
-                    app.start();
-                else:
-                    print(ColorText.warning + "Do you know the -url <argument:url> mean?");
+                app = appCore(uObj.url);
+                app.start();
+            else:
+                print(ColorText.warning + "Do you know the -url <argument:url> mean?");
             #only scann git info
             # if '--git' in arg or '-git' in arg:
             #     print(ColorText.information+"[Rankscanner] .git scanning");
