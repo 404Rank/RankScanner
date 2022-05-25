@@ -90,13 +90,13 @@ class appCore:
         except:
             pass;
         if len(editorList) > 0:
-            target = self.slash.sub("/",(self.urlObj.getMainAddr()+"/"+"/".join(tarList)));
+            target = self.urlObj.getMainAddr()+self.slash.sub("/",("/"+"/".join(tarList)));
             if tarList[-1] != "/":
                     target += "/";
             for i in editorList:
                 status = self.Require(target+i);
                 if status == 200:
-                    self.res['finder'].append(ColorText.find + '200 - '+"This url is a EditorLeakage: "+target);
+                    self.res['finder'].append(ColorText.find + '200 - '+"This url is a EditorLeakage: "+target+i);
 
     def homePageSniff(self) -> str:
         homeList = DataSet.homePage();
