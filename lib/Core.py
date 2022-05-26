@@ -25,7 +25,7 @@ class appCore:
         if statusCode == 200:
             print(ColorText.information+"Request success and Start to scan");
             tarList = self.urlObj.get_list_name();
-            #getHomePage
+            # #获取主页方法
             # home = self.homePageSniff();
             # print(home);
             '''
