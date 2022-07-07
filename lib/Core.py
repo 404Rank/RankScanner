@@ -37,7 +37,6 @@ class appCore:
             self.res_out_put();
         else:
             print(ColorText.warning + "The website couldn't request and the status code is %s" % str(statusCode));
-
     #core tarList: 路径，且索引越高，目录越深
     def BasciLeakage(self,tarList) -> None:
         urlObj = self.urlObj;

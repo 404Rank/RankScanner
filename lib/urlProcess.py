@@ -1,8 +1,7 @@
 '''
 @Author:404Rank
 '''
-import sys;
-import re;
+import sys,re;
 from lib.ColorOut import ColorText
 try:
     from urlobject import URLObject;
@@ -16,11 +15,12 @@ class urlObject:
         self.url = url;
         self.urlObj = URLObject(url);
         #主机处理
-        if self.urlObj.scheme == None or self.urlObj.scheme == "":
+        if self.urlObj.scheme is None or self.urlObj.scheme == "":
             self.url = "http://"+self.url;
+            
         self.urlObj = URLObject(self.url);
         obj = self.urlObj
-        if self.urlObj.port == None or self.urlObj.port == "":
+        if self.urlObj.port is None:
             self.port = "";
         else:
             self.port = obj.port;
@@ -48,7 +48,7 @@ class urlObject:
 
     def isURL(self,url:str) -> bool:
         reg = re.compile(
-            r'^(?:http|ftp)s?://' # http:// or https://
+            r'^(?:http|ftp)s?://' # http:// or https://  ftp or ftps
             r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|' #domain...
             r'localhost|' #localhost...
             r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})' # ...or ip
