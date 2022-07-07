@@ -132,5 +132,5 @@ class appCore:
             );
             return require.status;
         except:
-            print(ColorText.warning + "connect faild at {}".format(target));
+            print(ColorText.warning + "connect {} faild".format(target));
             return -1;
