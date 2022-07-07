@@ -17,7 +17,7 @@ class urlObject:
         #主机处理
         if self.urlObj.scheme is None or self.urlObj.scheme == "":
             self.url = "http://"+self.url;
-            
+
         self.urlObj = URLObject(self.url);
         obj = self.urlObj
         if self.urlObj.port is None:
@@ -31,6 +31,7 @@ class urlObject:
     def getMainAddr(self) -> str:
         '''
         获取可访问主机地址，包括端口
+        不携带 "/"
         '''
         mainAddr = "%s://%s" % (self.protocal,self.host);
         if self.port != "":
@@ -38,12 +39,12 @@ class urlObject:
         return mainAddr;
 
     def get_list_name(self)-> list :
-        '''0
+        '''
         获取目录名
         0级目录:/
+        更新：取消 0 级目录
         '''
         deepList = list(item for item in self.path.split("/") if item !="");
-        deepList.insert(0,"/");
         return deepList;
 
     def isURL(self,url:str) -> bool:
