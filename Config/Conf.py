@@ -2,6 +2,7 @@
 class config:
     VERSION = "1.0.0";
     CONN_WAIT_TIME = 3.5;
+    SHOW_DETIALS = True;
     def __init__(self) -> None:
         pass
     
